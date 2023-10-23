@@ -11,6 +11,10 @@ var FCM = new fcm(certPath);
 //   });
 
 exports.sendNotification = (request, response, next )=>{
+    var tokens = [
+            "token112312",
+            "token23242"
+    ];
     try {
         let message = {
             notification: {
@@ -26,10 +30,12 @@ exports.sendNotification = (request, response, next )=>{
         FCM.send(message, function(err, res){
             if(err){
                 return response.status(500).send({
+                    success: false,
                     message: err
                 });
             }else{
                 return response.status(200).send({
+                    success: true,
                     message: "Notification sent."
                 });
             }
