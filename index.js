@@ -5,9 +5,9 @@ const app  = express();
 app.use(express.json());
 
 
-app.use("/", (req, res) => {
-    console.log("Main Page Connected!");
-    });
+// app.use("/", (req, res) => {
+//     console.log("Main Page Connected!");
+//     });
 app.use("/api", require("./routes/app.routes"));
 
 
