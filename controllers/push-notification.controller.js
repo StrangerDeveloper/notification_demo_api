@@ -44,3 +44,49 @@ exports.sendNotification = (request, response, next )=>{
         throw error;
     }
 };
+
+exports.subscribe = (req, res, next)=>{
+    var registrationToken = req.body.userToken;
+    var topic = req.body.topic;
+    FCM.subscribeToTopic(registrationToken, topic)
+    .then((response) => {
+
+        res.status(200).send({
+            success: true,
+            message: `Successfully subscribed to topic:', ${response}`
+        });
+        // See the MessagingTopicManagementResponse reference documentation
+        // for the contents of response.
+        console.log('Successfully subscribed to topic:', response);
+      })
+      .catch((error) => {
+        res.status(500).send({
+            success: false,
+            message: `Error subscribing to topic: ${error}`
+        });
+        console.log('Error subscribing to topic:', error);
+      });
+};
+
+exports.unsubscribe = (req, res, next)=>{
+    var registrationToken = req.body.userToken;
+    var topic = req.body.topic;
+    FCM.unsubscribeFromTopic(registrationToken, topic)
+    .then((response) => {
+
+        res.status(200).send({
+            success: true,
+            message: `Successfully unsubscribed to topic:', ${response}`
+        });
+        // See the MessagingTopicManagementResponse reference documentation
+        // for the contents of response.
+        console.log('Successfully unsubscribed to topic:', response);
+      })
+      .catch((error) => {
+        res.status(500).send({
+            success: false,
+            message: `Error unsubscribing to topic: ${error}`
+        });
+        console.log('Error unsubscribing to topic:', error);
+      });
+};
