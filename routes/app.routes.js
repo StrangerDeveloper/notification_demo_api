@@ -4,4 +4,8 @@ const router = express.Router();
 
 router.post("/send", pushNotificationController.sendNotification);
 
+router.post('/', (req, res) => {
+console.log("Main Page Connected!");
+});
+
 module.exports = router;
