@@ -1,7 +1,7 @@
 var admin = require("firebase-admin");
 var fcm =  require("fcm-notification");
 
-var serviceAccount = require("../config/push-notification-key.json");
+var serviceAccount = require("../config/ismmart-push-notification.json");
 
 var certPath = admin.credential.cert(serviceAccount);
 var FCM = new fcm(certPath);
