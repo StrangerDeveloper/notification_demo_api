@@ -11,7 +11,7 @@ app.use(express.json());
 app.use("/api", require("./routes/app.routes"));
 
 
-
-app.listen(4000, function(){
-    console.log("Server is connected and ready to go.");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function(){
+    console.log(`Server is connected on Port: ${PORT} and ready to go. `);
 });
